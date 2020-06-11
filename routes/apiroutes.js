@@ -31,10 +31,8 @@ router.delete("/notes/:id", (req, res) => {
         let parsedNotes 
         parsedNotes = [].concat(JSON.parse(notes))
         return parsedNotes
-    }).then((noteData) => noteData.filter((note)=> note.noteId !== noteId))
+    }).then((noteData) => noteData.filter((note)=> note.id !== noteId))
     .then((filteredNotes)=>{
-            console.log(noteId)
-            console.log(filteredNotes)
             writeFileAsync('db/db.json', JSON.stringify(filteredNotes));
             res.json({
                 ok: true
